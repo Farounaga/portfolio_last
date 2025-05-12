@@ -1,0 +1,197 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+
+header, footer {
+  padding: 20px;
+  text-align: center;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* добавь ниже, чтобы switch отталкивался вправо */
+sl-switch#theme-switch {
+  margin-left: auto;
+}
+
+header nav a {
+  color: #c9d1d9;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+header nav a:hover,
+header nav a.active {
+  background: #30363d;
+}
+
+section {
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#hero {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.page-section {
+  display: none;
+}
+
+.page-section.active {
+  display: block;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* кнопка “гамбургер” */
+#menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: inherit;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+/* адаптивное поведение */
+@media (max-width: 768px) {
+  /* прячем ссылки */
+  header nav a {
+    display: none;
+  }
+  /* показываем кнопку */
+  #menu-toggle {
+    display: block;
+  }
+  /* когда меню открыто — показываем ссылки вертикально */
+  header nav.open {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #161b22;
+    padding: 1rem 0;
+  }
+  header nav.open a {
+    display: block;
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+}
+.skills-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.skills-container h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-left: 3px solid #e0e0e0;
+  transition: border-color 0.2s ease;
+}
+
+.skill-item:hover {
+  border-left-color: #4a90e2;
+}
+
+.skill-icon {
+  font-size: 1.5rem;
+  color: #666;
+}
+
+.skill-content h4 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.frameworks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+sl-tag {
+  --sl-input-height-medium: 24px;
+  --sl-input-font-size-medium: 12px;
+}
+
+@media (max-width: 600px) {
+  .skills-container {
+    padding: 1rem;
+  }
+}
+/* presentation.html */
+.minimal-details {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.minimal-details::part(base) {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.minimal-details::part(summary) {
+  display: inline-block;
+  cursor: pointer;
+  font-weight: normal;
+  color: inherit;
+  text-decoration: none;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.minimal-details::part(content) {
+  margin-top: 0.5rem;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* competences.html */
+
+/*# sourceMappingURL=style.css.map */

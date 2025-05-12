@@ -1,0 +1,51 @@
+[
+  {
+    "title": "Python",
+    "level": "Intermédiaire",
+    "description": "Développement de scripts, automatisation de tâches.",
+    "icon": "simple-icons:python",
+    "frameworks": ["Flask"]
+  },
+  {
+    "title": "HTML5 / CSS3",
+    "level": "Débutant",
+    "description": "Création de sites web responsives.",
+    "icons": ["simple-icons:html5", "simple-icons:css3"],
+    "frameworks": ["Bootstrap", "Tailwind", "Bulma", "Materialize", "Shoelace", "SASS"]
+  },
+  {
+    "title": "JavaScript / Node.js",
+    "level": "Débutant",
+    "description": "Développement d'applications web.",
+    "icon": "simple-icons:javascript",
+    "frameworks": ["React", "HeroUI", "Express"]
+  },
+  {
+    "title": "PHP",
+    "level": "Débutant",
+    "description": "Développement web côté serveur.",
+    "icon": "simple-icons:php",
+    "frameworks": ["Symfony"]
+  },
+  {
+    "title": "Shell",
+    "level": "Débutant",
+    "description": "Automatisation via scripts.",
+    "icon": "file-icons:terminal",
+    "frameworks": ["Bash", "PowerShell"]
+  },
+  {
+    "title": "SQL",
+    "level": "Débutant",
+    "description": "Gestion de bases de données.",
+    "icon": "simple-icons:sqlite",
+    "frameworks": ["SQLite", "MySQL", "PostgreSQL", "MariaDB"]
+  },
+  {
+    "title": "LLM",
+    "level": "Intermédiaire",
+    "description": "Utilisation de modèles d'IA pour des tâches variées.",
+    "icon": "file-icons:robots",
+    "frameworks": ["Ollama", "ChatGPT", "Grok", "Deepseek"]
+  }
+]
