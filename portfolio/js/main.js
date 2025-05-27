@@ -53,7 +53,10 @@ document.querySelectorAll('sl-include').forEach(include => {
 
 
 
+
 // ——— Восстановление состояния из хэша и инициализация ———
+
+function loadSkills() {}
 document.addEventListener("DOMContentLoaded", () => {
   const hash = window.location.hash.substring(1);
   if (hash) {
