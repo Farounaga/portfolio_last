@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création d'un Dossier Partagé</title>
+    <style>
+        /* Styles de base pour le contenu de la page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8e7e8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ff6f91;
+            font-weight: bold;
+        }
+
+        h1, p {
+            text-align: center;
+        }
+
+        .content {
+            margin: 30px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .description {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fffbf7;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .description h2 {
+            color: #ff6f91;
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="service_informatique.html">Retour sur la sélection <br>Mettre à disposition un service informatique</a></li>
+                <li><a href="fiches.html">Retour au tableau</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="content">
+        <h1>Création et Gestion d'un Dossier Partagé</h1>
+
+        <div class="image-container">
+            <img src="images/dossier_partage_exemple.png" alt="Exemple de configuration d'un dossier partagé">
+        </div>
+
+        <section class="description">
+            <h2>Étapes pour créer et gérer un dossier partagé</h2>
+            <p>Voici les étapes réalisées pour mettre en place un dossier partagé et gérer les droits d'accès :</p>
+            <ul>
+                <li><strong>Création des groupes :</strong> Utilisation de la commande <code>addgroup</code> pour créer les groupes "étudiants", "formateurs" et "administrateurs".</li>
+                <li><strong>Ajout des utilisateurs :</strong> Chaque utilisateur est ajouté aux groupes correspondants avec la commande <code>usermod -a -G</code>.</li>
+                <li><strong>Visualisation de l'arborescence :</strong> La commande <code>tree /partage</code> permet de vérifier la structure des dossiers.</li>
+                <li><strong>Création d'un utilisateur :</strong> La commande <code>adduser</code> permet d'ajouter un utilisateur, ici "form2".</li>
+                <li><strong>Définition des droits d'accès :</strong> La commande <code>chmod 740</code> permet de donner aux étudiants les droits nécessaires sur le dossier "travaux".</li>
+            </ul>
+        </section>
+    </section>
+    
+    <br>    <br>    <br>    <br>    <br>    <br>    <br>
+
+    <footer>
+        <p>&copy; 2025 Manon Pinto - Tous droits réservés</p>
+    </footer>
+
+</body>
+
+</html>

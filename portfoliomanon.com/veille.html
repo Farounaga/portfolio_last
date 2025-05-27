@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8e7e8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(45deg, #f8e7e8, #ffe6e9);
+            background-size: 200% 200%;
+            animation: gradientBG 8s ease infinite;
+        }
+
+        header {
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ff6f91;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #d96073;
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(255, 111, 145, 0.5);
+        }
+
+        nav ul li a:active {
+            animation: shake 0.3s ease;
+        }
+
+        .hero {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #fff;
+            padding: 0 20px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #ff6f91;
+            animation: glowText 2s ease-in-out infinite alternate;
+            position: relative;
+        }
+
+        .hero h1 span {
+            display: inline-block;
+            animation: floating 0.3s ease infinite;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #333;
+            max-width: 700px;
+            margin: 20px 0;
+            line-height: 1.6;
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #ff6f91;
+        }
+
+        .hero a {
+            background-color: #ff6f91;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .hero a:hover {
+            background-color: #d96073;
+        }
+
+        .presentation, .about {
+            background-color: #fff;
+            padding: 50px 20px;
+            width: 100%;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .presentation h2, .about h2 {
+            font-size: 2.5rem;
+            color: #ff6f91;
+            margin-bottom: 30px;
+        }
+
+        .presentation p, .about p {
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #fff;
+            width: 300px;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotateX(10deg) rotateY(10deg);
+            transform-style: preserve-3d;
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            margin-top: 50px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            color: #333;
+        }
+
+        /* Animations */
+        @keyframes glowText {
+            from { text-shadow: 0 0 10px rgba(255, 111, 145, 0); }
+            to { text-shadow: 0 0 20px rgba(255, 111, 145, 0.5), 0 0 30px rgba(255, 111, 145, 0.3); }
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #ff6f91; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p, .presentation p, .about p { font-size: 1rem; }
+            .card { width: 90%; }
+        }
+        .carousel-section {
+    text-align: center;
+    background-color: #f8e7e8;
+    padding: 50px 20px;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.carousel-link {
+    background-color: #ff6f91;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-link:hover {
+    background-color: #d96073;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="me.html">Présentation</a></li>
+                <li><a href="projets.html">Mes projets</a></li>
+                <li><a href="fiches.html">E5 et E6</a></li>
+                <li><a href="competences.html">Mes compétences</a></li>
+                <li><a href="veille.html">Ma veille</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="accueil">
+        <h1>Ma veille</span></h1>
+        <p>Voici les articles que j'ai consulter </p>
+        <p>pour constituer ma veille technologique </p>
+    </section>
+
+
+<section class="carousel-section">
+    <h2>Mes Articles De Veille</h2>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="carousel-item active">
+                <img src="images/veille.png" alt="Projet 1">
+                <h3>Conseils pour développeur junior</h3>
+                <p>L'article donne des conseils aux développeur(euse)s juniors pour naviguer leur début de carrière.<br>
+                Il recommande de suivre des formations reconnues (universités, écoles d'ingénieurs) plutôt que des bootcamps courts.<br>
+                Lors des entretiens, il est crucial de montrer des projets personnels, d'être honnête sur ses connaissances et de communiquer efficacement.<br>
+                Une fois en poste, il faut être patient et découper les problèmes complexes, en mettant l'accent sur la qualité du code. <br>
+                La pratique régulière et la maîtrise des outils comme Git sont essentielles. <br>
+                Enfin, il encourage à prendre des défis pour progresser et à ignorer les critiques négatives des autres.</p>
+                <a href="https://www.jesuisundev.com/conseils-pour-developpeur-junior/" class="carousel-link">Voir l'article</a>
+            </div>
+            <div class="carousel-item">
+                <img src="images/veille2.png" alt="Projet 2">
+                <h3>Optimiser son SEO avec l'Intelligence Artificielle (IA)</h3>
+                <p>L'Intelligence Artificielle (IA) transforme le marketing digital, en particulier l'optimisation des stratégies SEO.<br>
+                Elle aide à trouver des thèmes pertinents, à explorer des mots-clés et à optimiser le contenu.<br>
+                Les outils d'IA facilitent la recherche de sujets, l'organisation des idées et la création de méta-descriptions attractives.<br> 
+                Ils permettent également d'améliorer le contenu existant, de suivre et d'analyser les campagnes SEO, ainsi que de réaliser des audits des pages.<br> 
+                Enfin, l'IA aide à surveiller les classements SERP en analysant la concurrence.<br>
+                Pour un SEO efficace, il est essentiel de combiner l'IA avec l'intervention humaine, qui apporte créativité et compréhension contextuelle.<br> 
+                Cette synergie est la clé pour des résultats durables et pertinents.</p>
+                <a href="https://www.tricorn.fr/2024/01/04/optimiser-son-seo-avec-lintelligence-artificielle-ia/" class="carousel-link">Voir l'article</a>
+            </div>
+            <div class="carousel-item">
+                <img src="images/veille.png" alt="Projet 3">
+                <h3>Pourquoi les développeurs codent avec le cul</h3>
+                <p>L'auteur raconte une expérience où, malgré un projet en avance, des demandes irréalistes de nouvelles fonctionnalités de la direction ont conduit à une pression énorme.<br>
+                Au lieu de s'opposer à ces délais, il a choisi de dire qu'ils « essaieraient » de livrer à temps, entraînant une baisse de la qualité et un échec lors de la démonstration au client.<br>
+                Cela a conduit à la perte du client et au licenciement de son collègue.<br>
+                L'auteur réalise qu'il est responsable de cette situation, <br>
+                soulignant l'importance pour un développeur de dire non à des délais irréalistes et de préserver la qualité,<br>
+                une leçon apprise grâce au livre Clean Coder.</p>
+                <a href="https://www.jesuisundev.com/pourquoi-les-developpeureuses-codent-avec-le-cul/l" class="carousel-link">Voir l'article</a>
+            </div>
+            <div class="carousel-item">
+                <img src="images/veille2.png" alt="Projet 4">
+                <h3>4 idées reçues sur les sites web</h3>
+                <p>Un site ne génère pas de clients automatiquement : Pour attirer des visiteurs, il faut travailler le SEO ou investir dans la publicité.<br>
+                Utilité d’un site : Il présente votre offre et convertit les visiteurs en prospects.<br>
+                Coûts d'entretien : Un site peut coûter peu, environ 10 € par an pour le domaine et 3 à 10 € par mois pour l'hébergement.<br>
+                Contenu long : Les visiteurs apprécient un contenu riche, mais il doit être bien structuré.<br>
+                Esthétique vs. ergonomie : L’ergonomie et la navigation sont plus importantes que l’apparence pour l’expérience utilisateur.</p>
+                <a href="https://www.tricorn.fr/2023/01/24/4-idees-recues-sur-les-sites-web/" class="carousel-link">Voir l'article</a>
+            </div>
+            <div class="carousel-item">
+                <img src="images/veille.png" alt="Projet 5">
+                <h3>La meilleure technique de résolution de problèmes en programmation</h3>
+                <p>Pour résoudre efficacement des problèmes en programmation :<br>
+                Clarifier : Reformulez le problème, simplifiez-le et validez votre compréhension avec la personne concernée.<br>
+                Planifier : Schématisez le contexte et élaborez une liste des étapes à suivre.<br>
+                Appliquer : Divisez le problème en sous-problèmes et itérez rapidement des solutions, même imparfaites.<br>
+                Répéter : Pratiquez régulièrement pour améliorer vos compétences.<br>
+                Cette méthode vous aidera à aborder les problèmes avec confiance et à gagner du temps.</p>
+                <a href="https://www.jesuisundev.com/resolution-de-problemes/" class="carousel-link">Voir l'article</a>
+            </div>
+            <div class="carousel-item">
+                <img src="images/veille2.png" alt="Projet 6">
+                <h3>Comment google classe les sites web ?</h3>
+                <p>Optimiser le Référencement de Votre Page Web<br>
+                Contenu :<br>
+                Longueur : Visez au moins 800 mots.<br>
+                Originalité : Publiez du contenu unique.<br>
+                Pertinence : Assurez-vous que le contenu est intéressant et cohérent.<br>
+                Technique :<br>
+                Rapidité : Le site doit être rapide.<br>
+                Qualité : Évitez les bugs et problèmes d'affichage.<br>
+                Backlinks : Obtenez des liens de sites réputés pour augmenter votre autorité.<br>
+                Temps : Le référencement prend plusieurs semaines, soyez patient..</p>
+                <a href="https://www.tricorn.fr/2023/01/21/comment-google-classe-les-sites-web/" class="carousel-link">Voir l'article</a>
+            </div>
+        </div>
+        <button class="carousel-button prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="carousel-button next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+</section>
+
+
+
+<footer>
+    <p>&copy; 2025 Manon Pinto - Tous droits réservés</p>
+    <p>
+        <a href="https://www.linkedin.com/in/manonpinto" target="_blank" aria-label="LinkedIn de Manon Pinto">
+            <img src="images/linkedin.png" alt="LinkedIn" width="30">
+        </a>
+        <a href="https://github.com/Manon-pinto" target="_blank" aria-label="GitHub de Manon Pinto">
+            <img src="images/github.png" alt="GitHub" width="30">
+        </a>
+    </p>
+</footer>
+    
+    <script>
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        const slides = document.querySelectorAll('.carousel-item');
+        if (index >= slides.length) {
+            currentSlide = 0;
+        } else if (index < 0) {
+            currentSlide = slides.length - 1;
+        } else {
+            currentSlide = index;
+        }
+
+        const offset = -currentSlide * 100; // Calculer l'offset
+        document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
+    }
+
+    function moveSlide(step) {
+        showSlide(currentSlide + step);
+    }
+
+    // Initialiser le carrousel
+    showSlide(currentSlide);
+</script>
+
+</body>
+
+</html>

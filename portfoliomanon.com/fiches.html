@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8e7e8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(45deg, #f8e7e8, #ffe6e9);
+            background-size: 200% 200%;
+            animation: gradientBG 8s ease infinite;
+        }
+
+        header {
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ff6f91;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: black;
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(255, 111, 145, 0.5);
+        }
+
+        nav ul li a:active {
+            animation: shake 0.3s ease;
+        }
+        
+      /* Tableau */
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        th a, td a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        th a:hover, td a:hover {
+            color: black;
+            text-decoration: underline;
+        }
+
+        th {
+            background: #f8e7e8;
+            color: black;
+            font-size: 1.2rem;
+        }
+
+        tr:hover {
+            background: white;
+        }
+
+        .section-header {
+            background-color: #ff3366;
+            color: white;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .hero {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #fff;
+            padding: 0 20px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #ff6f91;
+            animation: glowText 2s ease-in-out infinite alternate;
+            position: relative;
+        }
+
+        .hero h1 span {
+            display: inline-block;
+            animation: floating 0.3s ease infinite;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #333;
+            max-width: 700px;
+            margin: 20px 0;
+            line-height: 1.6;
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #ff6f91;
+        }
+
+        .hero a {
+            background-color: #ff6f91;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero a:hover {
+            background-color: #d96073;
+        }
+
+        .presentation, .about {
+            background-color: #fff;
+            padding: 50px 20px;
+            width: 100%;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .presentation h2, .about h2 {
+            font-size: 2.5rem;
+            color: #ff6f91;
+            margin-bottom: 30px;
+        }
+
+        .presentation p, .about p {
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+      /* Bouton de support */
+        .button-support {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6f91, #ff3366);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .button-support:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 15px rgba(255, 51, 102, 0.3);
+        }
+
+        section {
+            background-color: #fff;
+            padding: 50px 20px;
+            width: 100%;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #ff6f91;
+            margin-bottom: 30px;
+        }
+
+        .image-cliquable {
+            max-width: 80%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .image-cliquable:hover {
+            transform: scale(1.05);
+        }
+        .fiche-e4 img {
+            width: 80%; 
+            height: auto;
+            max-width: 80%;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .fiche-e4 img:hover {
+            transform: scale(1.1); 
+        }
+        
+        .support-e4 {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .support-e4 h2 {
+            font-size: 2rem;
+            color: #ff6f91;
+            margin-bottom: 10px;
+        }
+
+        .support-e4 p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Style du bouton */
+        .btn-support {
+            display: inline-block;
+            background-color: #ff6f91;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 111, 145, 0.3);
+        }
+
+        .btn-support:hover {
+            background-color: #d96073;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 111, 145, 0.5);
+        }
+
+        .btn-support:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 15px rgba(255, 111, 145, 0.3);
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            margin-top: 50px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            color: #333;
+        }
+
+        /* Animations */
+        @keyframes glowText {
+            from { text-shadow: 0 0 10px rgba(255, 111, 145, 0); }
+            to { text-shadow: 0 0 20px rgba(255, 111, 145, 0.5), 0 0 30px rgba(255, 111, 145, 0.3); }
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #ff6f91; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p, .presentation p, .about p { font-size: 1rem; }
+            .card { width: 90%; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" aria-label="Accueil">Accueil</a></li>
+                <li><a href="me.html" aria-label="Présentation">Présentation</a></li>
+                <li><a href="projets.html">Mes projets</a></li>
+                <li><a href="fiches.html" aria-label="Mes projets">E5 et E6</a></li>
+                <li><a href="competences.html" aria-label="Mes compétences">Mes compétences</a></li>
+                <li><a href="veille.html" aria-label="Ma veille">Ma veille</a></li>
+                <li><a href="contact.html" aria-label="Contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="accueil">
+        <h1>Fiches E5 et E6</h1>
+        <p>Voici mes fiches de compétences E5 et E6.</p>
+    </section>
+
+    <section class="fiche-e4">
+        <h1>Tableau de synthèse des réalisations</h1>
+
+        <table>
+            <tr>
+                <th>Compétences mises en œuvre</th>
+                <th>Période</th>
+                <th><a href="patrimoines.html">Gérer le patrimoine informatique</a></th>
+                <th><a href="repondre_incidents.html">Répondre aux incidents et aux demandes d’assistance et d’évolution</a></th>
+                <th><a href="presence_en_ligne.html">Développer la présence en ligne de l’organisation</a></th>
+                <th><a href="mode_projet.html">Travailler en mode projet</a></th>
+                <th><a href="service_informatique.html">Mettre à disposition des utilisateurs un service informatique</a></th>
+                <th><a href="dev_professionnel.html">Organiser son développement professionnel</a></th>
+            </tr>
+            <section class="fiche-e4">
+        <tr>
+            <th colspan="8">Réalisations en cours de formation</th>
+        </tr>
+            <tr>
+                <td><a href="dossier_partage.html">Création d'un dossier partagé</a></td>
+                <td>14/02/2024</td>
+                <td></td><td></td><td></td><td></td><td>X</td><td></td>
+            </tr>
+            <tr>
+                <td><a href="remuneration.html">Reflexion sur la rémunération</a></td>
+                <td>15/05/2024</td>
+                <td></td><td></td><td></td><td></td><td></td><td>X</td>
+            </tr>
+            <tr>
+                <td><a href="https://www.linkedin.com/in/manonpinto">Création d'un compte linkedIn</a></td>
+                <td>11/09/2023 au 03/12/2024 </td>
+                <td></td><td></td><td></td><td></td><td></td><td>X</td>
+            </tr>
+            <tr>
+                <td><a>Création de mon portfolio en HTML/CSS</a></td>
+                <td>01/01/2024 au 12/07/2025</td>
+                <td></td><td></td><td>X</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td><a href="vm.html">Création de machines virtuelles</a></td>
+                <td>11/09/2023 au 12/07/2024</td>
+                <td></td><td></td><td></td><td></td><td>X</td><td></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.prunhack.fr">Création du site du prun'hack </a></td>
+                <td>19/02/2024 au 22/02/2024</td>
+                <td></td><td></td><td>X</td><td></td><td></td><td></td>
+            </tr>  
+            <tr>
+                <td><a href="veille.html">Veille informatique</a></td>
+                <td>01/01/2024 au 12/07/2025</td>
+                <td></td><td></td><td></td><td></td><td></td><td>X</td>
+            </tr>
+            <tr>
+                <td><a>Création d'une application symfony avec mes camarades</a></td>
+                <td>19/06/2024 au 07/11/2024</td>
+                <td></td><td></td><td>X</td><td>X</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td><a>Création d'une application desktop, mobile et une api avec mes camarades</a></td>
+                <td>05/12/2024 au 15/03/2025</td>
+                <td></td><td></td><td>X</td><td>X</td><td></td><td></td>
+            </tr>
+        <tr>
+            <th colspan="8">Réalisations en milieu professionnel en cours de première année</th>
+        </tr>
+           <tr>
+                <td><a href="prepa.html">Préparation des postes pour les clients de la société </a></td>
+                <td>27/09/2023 au 04/07/2025</td>
+                <td></td><td></td><td></td><td></td><td>X</td><td></td>
+            </tr>
+              <tr>
+                <td><a href="cahier_config.html">Rédaction des cahiers de configuration clients</a></td>
+                <td>27/09/2023 au 04/07/2025</td>
+                <td>X</td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+              <tr>
+                <td><a href="catalogue.html">Création d'un catalogue produit Coaxis </a></td>
+                <td>08/04/2024 au 04/07/2025 </td>
+                <td></td><td></td><td>X</td><td></td><td>X</td><td></td>
+            </tr>
+              <tr>
+                <td><a href="hotline.html">Hotline et orientation des clients dans le service concerné </a></td>
+                <td>27/09/2024 au 04/07/2025</td>
+                <td></td><td>X</td><td></td><td></td><td></td><td></td>
+            </tr>
+        <tr>
+            <th colspan="8">Réalisations en milieu professionnel en cours de seconde année</th>
+        </tr>
+              <tr>
+                <td><a href="prepa.html">Préparation des postes pour les clients de la société </a></td>
+                <td>27/09/2023 au 04/07/2025</td>
+                <td></td><td></td><td></td><td></td><td>X</td><td></td>
+            </tr>
+            <tr>
+                <td><a href="cahier_config.html">Rédaction des cahiers de configuration clients</a></td>
+                <td>27/09/2023 au 04/07/2025</td>
+                <td>X</td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+              <tr>
+                <td><a href="logiciel.html">Mise à jour, support sur les logiciels sage 50 et batigest </a></td>
+                <td>15/08/2024 au 04/07/2024 </td>
+                <td></td><td>X</td><td></td><td></td><td></td><td></td>
+            </tr>
+              <tr>
+                <td><a href="hotline.html">Hotline et orientation des clients dans le service concerné </a></td>
+                <td>27/09/2024 au 04/07/2025</td>
+                <td></td><td>X</td><td></td><td></td><td></td><td></td>
+            </tr>
+              <tr>
+                <td><a href="catalogue.html">Création d'un catalogue produit Coaxis </a></td>
+                <td>08/04/2024 au 04/07/2025</td>
+                <td></td><td></td><td>X</td><td></td><td>X</td><td></td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="support-e4">
+        <a href="images/E4.pdf" target="_blank" class="button-support">Voir la fiche E5</a>
+    </section>
+
+    <section class="fiche-e5">
+        <h2>Fiche E6</h2>
+        <a href="images/Fiche%20E6-Site_Vitrine_Tissu-Magique_Océane%20BET--TAFFARD.docx" target="_blank">
+            <img src="images/E6.png" alt="Fiche E5" style="width: 50%;">
+        </a>
+    </section>
+
+<footer>
+    <p>&copy; 2025 Manon Pinto - Tous droits réservés</p>
+    <p>
+        <a href="https://www.linkedin.com/in/manonpinto" target="_blank" aria-label="LinkedIn de Manon Pinto">
+            <img src="images/linkedin.png" alt="LinkedIn" width="30">
+        </a>
+        <a href="https://github.com/Manon-pinto" target="_blank" aria-label="GitHub de Manon Pinto">
+            <img src="images/github.png" alt="GitHub" width="30">
+        </a>
+    </p>
+</footer>
+</body>
+
+</html>
