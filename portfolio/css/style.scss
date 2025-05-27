@@ -201,6 +201,11 @@ sl-tag {
   background: transparent !important;
 }
 
+.timeline-item {
+  display: flex;
+  align-items: center; // выравнивает элементы по центру по вертикали
+  gap: 0.7rem;         // отступ между badge и details, можешь подогнать под себя
+}
 
 
 

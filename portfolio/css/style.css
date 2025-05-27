@@ -192,6 +192,12 @@ sl-tag {
   background: transparent !important;
 }
 
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
 /* competences.html */
 
 /*# sourceMappingURL=style.css.map */
