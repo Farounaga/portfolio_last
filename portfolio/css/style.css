@@ -198,6 +198,36 @@ sl-tag {
   gap: 0.7rem;
 }
 
-/* competences.html */
+#chat-area {
+  background: transparent;
+  padding: 0;
+}
+
+.msg {
+  margin-bottom: 2px;
+  padding: 0;
+  background: inherit;
+  color: inherit;
+  border: inherit;
+  border-radius: inherit;
+  box-shadow: inherit;
+  font-size: inherit;
+  max-width: 75%;
+}
+
+.role-label {
+  font-size: inherit;
+  font-weight: 700;
+  opacity: 0.7;
+  min-width: 38px;
+  text-align: left;
+  color: inherit;
+}
+
+sl-card.msg {
+  font-size: 1rem !important;
+  line-height: 1.4 !important;
+  padding: 0 !important;
+}
 
 /*# sourceMappingURL=style.css.map */

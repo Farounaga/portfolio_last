@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AsciiBinaryFlow</title>
+  <style>
+    body {
+      margin: 0;
+      background: #F0EEE6;
+      overflow: hidden;
+      font-family: monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #ascii-canvas {
+      line-height: 0.85;
+      letter-spacing: 0.05em;
+      color: rgba(0,0,0,0.85);
+      user-select: none;
+      padding: 30px;
+      margin-left: 10%;
+    }
+  </style>
+</head>
+<body>
+  <div id="ascii-canvas"></div>
+  <script>
+    const width = 65;
+    const height = 65;
+    let grid = [];
+    let time = 0;
+    const canvas = document.getElementById('ascii-canvas');
+
+    function initGrid() {
+      grid = [];
+      for (let y = 0; y < height; y++) {
+        let row = [];
+        for (let x = 0; x < width; x++) row.push(' ');
+        grid.push(row);
+      }
+    }
+
+    function render() {
+      let html = '';
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          html += grid[y][x];
+        }
+        html += '<br>';
+      }
+      canvas.innerHTML = html;
+    }
+
+    function update() {
+      initGrid();
+      const blockSize = 30;
+      const blockX = Math.floor(width / 2 - blockSize / 2);
+      const blockY = Math.floor(height / 2 - blockSize / 2);
+      const t = time * 0.005;
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          if (x >= blockX && x < blockX + blockSize && y >= blockY && y < blockY + blockSize) {
+            const innerDist = Math.min(
+              x - blockX,
+              blockX + blockSize - x,
+              y - blockY,
+              blockY + blockSize - y
+            );
+            const erosion = time * 0.0067;
+            if (innerDist > erosion) {
+              grid[y][x] = '1';
+            } else {
+              grid[y][x] = Math.random() > 0.8 ? '1' : '0';
+            }
+          } else {
+            const dx = x - width / 2;
+            const dy = y - height / 2;
+            const angle = Math.atan2(dy, dx);
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const wave = Math.sin(dist * 0.2 - t + angle * 1.5);
+            const flow = Math.sin(x * 0.08 + y * 0.04 + t * 0.4);
+            if (flow + wave > 0.4) {
+              grid[y][x] = '0';
+            } else if (flow + wave < -0.4) {
+              grid[y][x] = '~';
+            }
+          }
+        }
+      }
+      for (let i = 0; i < 5; i++) {
+        const crackX = blockX + Math.floor(Math.random() * blockSize);
+        const crackY = blockY + Math.floor(Math.random() * blockSize);
+        const length = Math.floor(Math.random() * 10) + 5;
+        let cx = Math.floor(crackX);
+        let cy = Math.floor(crackY);
+        for (let j = 0; j < length; j++) {
+          if (cx >= 0 && cx < width && cy >= 0 && cy < height) {
+            grid[cy][cx] = '0';
+          }
+          cx += Math.floor(Math.random() * 3) - 1;
+          cy += Math.floor(Math.random() * 3) - 1;
+        }
+      }
+      time++;
+    }
+
+    function animate() {
+      update();
+      render();
+      requestAnimationFrame(animate);
+    }
+
+    // Запуск
+    animate();
+  </script>
+</body>
+</html>

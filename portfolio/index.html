@@ -64,11 +64,18 @@
   </header>
 
   <main>
-    <section id="hero" class="page-section active">
-      <h1>Bienvenue sur mon Portfolio</h1>
-      <p>Je suis Vladimir, passionné de cybersécurité.</p>
-      <sl-button data-target="presentation">Présentation</sl-button>
+    <section id="hero" class="page-section active" style="display:flex; flex-direction:column; height:100vh;">
+      <p>Bonjour, je suis Vladimir. 😎</p>
+      <div id="chat-area"
+        style="display:flex; flex-direction:column; gap:10px; max-height:60vh; overflow-y:auto; background:transparent; border-radius:0; padding:0;">
+        <!-- Сообщения появляются тут -->
+      </div>
+      <form id="ai-form" style="display:flex; gap:8px; align-items:center; margin-top:1rem;">
+        <sl-input id="user-input" placeholder="Posez-moi votre question..." style="flex:1;"></sl-input>
+        <sl-button type="submit">Envoyer</sl-button>
+      </form>
     </section>
+
 
     <section id="presentation" class="page-section">
       <sl-include 
