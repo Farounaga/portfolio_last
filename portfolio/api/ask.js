@@ -1,19 +1,11 @@
-require('dotenv').config();
-console.log('API KEY:', process.env.OPENROUTER_API_KEY);
-// Этот файл запускает сервер для обработки запросов к OpenRouter API
-const express = require('express');
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-// Для Node.js 18+ можно использовать встроенный fetch, но для совместимости с более старыми версиями используем node-fetch
+import fetch from 'node-fetch';
 
-const path = require('path');
-const app = express();
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    res.status(405).json({ error: 'Méthode non autorisée' });
+    return;
+  }
 
-app.use(express.json());
-app.use(express.static(__dirname + '/css'));
-app.use(express.static(__dirname + '/js'));
-app.use(express.static(__dirname)); // Твои статики (index.html и пр.)
-
-app.post('/api/ask', async (req, res) => {
   const { userMsg, markdown } = req.body;
 
   const prompt = `
@@ -47,8 +39,8 @@ Tu simules l'utilisateur. Toujours à la première personne ("je", "mon", "ma").
 Pas de compliments, pas de reformulation, pas de digression.
 Respecte strictement les faits et le style du profil fourni.
 Réponds toujours en texte lisible, avec des paragraphes courts (2-3 phrases chacun), sans liste ni markdown.
-N'indique jamais que tu es une IA.
-Langue de la question.
+N'indique jamais que tu es une IA ou un assistant.
+Utilise la langue de la question.
 `
           },
           { role: 'user', content: prompt }
@@ -57,20 +49,11 @@ Langue de la question.
     });
     const data = await r.json();
     if (!r.ok) {
-      console.error('OpenRouter error:', data);
       res.status(500).json({ error: data });
       return;
     }
-    res.json(data);
+    res.status(200).json(data);
   } catch (err) {
-    console.error('Catch error:', err);
-    res.status(500).json({ error: 'Ошибка на сервере', details: err.message });
+    res.status(500).json({ error: 'Erreur interne', details: err.message });
   }
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'index.html'));
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log('Server running on', PORT));
+}
