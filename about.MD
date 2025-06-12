@@ -27,8 +27,7 @@
 
 # Connaissances de base en langages & outils
 
-- **Python** : structures de données, compréhensions, modules, gestion d’exceptions, pip  
-- **C** : compilation (gcc), pointeurs, allocation mémoire, structures  
+- **Python** : structures de données, compréhensions, modules, gestion d’exceptions, pip   
 - **JavaScript** : ES6+, DOM, callbacks/promises, fetch API  
 - **HTML & CSS** : balisage sémantique, flexbox, grid, responsive design  
 - **SQL** : requêtes , jointures, filtres, agrégations (COUNT, SUM)
