@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Загрузка about.md
 async function getMarkdown() {
-  const res = await fetch('about.md');
+  const res = await fetch('about.MD');
   return await res.text();
 }
 
