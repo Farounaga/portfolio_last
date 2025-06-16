@@ -1,0 +1,180 @@
+<!-- sections/competences.html -->
+<style>
+  .skills-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .left-column, .right-column {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .skill-item {
+    display: flex;
+    align-items: start;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  .skill-icon-container {
+    font-size: 2.2rem;
+    color: inherit;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+  }
+
+  .skill-content {
+    flex-grow: 1;
+  }
+
+  .skill-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: inherit;
+  }
+
+  .skill-progress {
+    margin-bottom: 0.8rem;
+  }
+
+  .frameworks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  sl-tag {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .right-top,
+  .right-bottom {
+    padding: 1rem;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  .right-bottom:last-child {
+    border-bottom: none;
+  }
+</style>
+
+<h3>Mes Compétences</h3>
+
+<div class="skills-container">
+  <!-- Левая колонка: навыки -->
+  <div class="left-column" id="skills-output">
+    <p>Chargement des compétences...</p>
+  </div>
+
+  <!-- Правая колонка -->
+  <div class="right-column">
+    <!-- Верхняя часть -->
+    <div class="right-top">
+      <h3>Autres compétences</h3>
+      <p>
+        Bilingue Français-Russe. (Russe - langue maternelle).<br>
+        Anglais - avancé <sl-tag type="success">C1</sl-tag>.<br>
+        Espagnol - intermédiaire-avancé <sl-tag type="success">B2</sl-tag><br>
+        Mandarin - débutant <sl-tag type="success">HSK1</sl-tag><br>
+        Espéranto - débutant<br>
+      </p>
+    </div>
+
+    <!-- Нижняя часть -->
+    <div class="right-bottom">
+      <h3>Sertificats</h3>
+      <ul style="list-style: none; padding-left: 0;">
+
+        <li><sl-tag type="success">RGPD</sl-tag></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  const levelToProgress = {
+    "Débutant": 30,
+    "Intermédiaire": 60,
+    "Confirmé": 85,
+    "Expert": 95
+  };
+
+  const skillsOutput = document.getElementById("skills-output");
+
+  try {
+    const response = await fetch("../data/competences.json");
+    if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
+
+    const skillsData = await response.json();
+    skillsOutput.innerHTML = "";
+
+    skillsData.forEach((skill) => {
+      const skillItem = document.createElement("div");
+      skillItem.className = "skill-item";
+
+      const iconContainer = document.createElement("div");
+      iconContainer.className = "skill-icon-container";
+
+      if (skill.icons) {
+        skill.icons.forEach(iconName => {
+          const icon = document.createElement("span");
+          icon.className = "iconify skill-icon";
+          icon.setAttribute("data-icon", iconName);
+          iconContainer.appendChild(icon);
+        });
+      } else if (skill.icon) {
+        const icon = document.createElement("span");
+        icon.className = "iconify skill-icon";
+        icon.setAttribute("data-icon", skill.icon);
+        iconContainer.appendChild(icon);
+      }
+
+      const contentDiv = document.createElement("div");
+      contentDiv.className = "skill-content";
+
+      const title = document.createElement("h4");
+      title.textContent = skill.title;
+
+      const progressBar = document.createElement("sl-progress-bar");
+      progressBar.className = "skill-progress";
+      progressBar.value = levelToProgress[skill.level] || 50;
+      progressBar.style.height = "6px";
+      progressBar.style.borderRadius = "999px";
+
+      const frameworksDiv = document.createElement("div");
+      frameworksDiv.className = "frameworks";
+
+      skill.frameworks.forEach(framework => {
+        const tag = document.createElement("sl-tag");
+        tag.setAttribute("type", "success");
+        tag.textContent = framework;
+        frameworksDiv.appendChild(tag);
+      });
+
+      contentDiv.appendChild(title);
+      contentDiv.appendChild(progressBar);
+      contentDiv.appendChild(frameworksDiv);
+
+      skillItem.appendChild(iconContainer);
+      skillItem.appendChild(contentDiv);
+
+      skillsOutput.appendChild(skillItem);
+    });
+
+  } catch (e) {
+    skillsOutput.innerHTML = `<p style="color:red;">Erreur lors du chargement.</p>`;
+    console.error(e);
+  }
+</script>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mon Portfolio</title>
+
+  <!-- Vos styles -->
+  <link rel="stylesheet" href="./css/style.css" />
+
+  <!-- Shoelace autoloader + thèmes light/dark -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/dark.css"
+    media="(prefers-color-scheme:dark)"
+    onload="document.documentElement.classList.add('sl-theme-dark')"
+  />
+  <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"
+  ></script>
+
+  <!-- Вот этот блок: указываем базовый путь для ассетов -->
+  <script type="module">
+    import { setBasePath } from 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/utilities/base-path.js';
+    setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn');
+  </script>
+
+  <!-- Shoelace tabs-->
+   
+<!-- Iconify v2: авто-инициализация <span class="iconify"> -->
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+
+
+  <script defer src="./js/main.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <sl-dropdown>
+        <sl-icon
+          slot="trigger"
+          name="list"
+          style="cursor:pointer; font-size:2rem; color: #c9d1d9;"
+        ></sl-icon>
+        <sl-menu>
+          <sl-menu-item data-target="hero">Accueil</sl-menu-item>
+          <sl-menu-item data-target="presentation">Présentation</sl-menu-item>
+          <sl-menu-item data-target="projects">Mes projets</sl-menu-item>
+          <sl-menu-item data-target="e5-e6">E5 et E6</sl-menu-item>
+          <sl-menu-item data-target="competences">Mes compétences</sl-menu-item>
+          <sl-menu-item data-target="veille">Ma veille</sl-menu-item>
+          <sl-menu-item data-target="contact">Contact</sl-menu-item>
+        </sl-menu>
+      </sl-dropdown>
+
+      <sl-switch id="theme-switch" label="Mode sombre" style="margin-left:auto;"></sl-switch>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" class="page-section active" style="display:flex; flex-direction:column; height:100vh;">
+      <p>Bonjour, je suis Vladimir. 😎</p>
+      <div id="chat-area"
+        style="display:flex; flex-direction:column; gap:10px; max-height:60vh; overflow-y:auto; background:transparent; border-radius:0; padding:0;">
+        <!-- Сообщения появляются тут -->
+      </div>
+      <form id="ai-form" style="display:flex; gap:8px; align-items:center; margin-top:1rem;">
+        <sl-input id="user-input" placeholder="Posez-moi votre question..." style="flex:1;"></sl-input>
+        <sl-button type="submit">Envoyer</sl-button>
+      </form>
+    </section>
+
+
+    <section id="presentation" class="page-section">
+      <sl-include 
+        src="./sections/presentation.html" 
+        allow-scripts
+      ></sl-include>
+    </section>
+  
+    <section id="projects" class="page-section">
+      <sl-include 
+        src="./sections/projects.html"
+        allow-scripts
+      ></sl-include>
+    </section>
+  
+    <section id="e5-e6" class="page-section">
+      <sl-include
+        src="./sections/e5-e6.html"
+        allow-scripts
+        ></sl-include>
+    </section>
+  
+    <section id="competences" class="page-section">
+      <sl-include
+        src="./sections/competences.html"
+        allow-scripts
+        ></sl-include>
+    </section>
+  
+    <section id="veille" class="page-section">
+      <sl-include 
+        src="./sections/veille.html"
+        allow-scripts
+        ></sl-include>
+    </section>
+  
+    <section id="contact" class="page-section">
+      <sl-include 
+        src="./sections/contact.html"
+        allow-scripts
+        ></sl-include>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Vladimir Spirine</p>
+  </footer>
+</body>
+</html>

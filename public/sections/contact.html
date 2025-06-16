@@ -1,0 +1,71 @@
+<!-- sections/contact.html -->
+<h2>Contactez-moi</h2>
+
+<p>
+  Vous pouvez me contacter pour toute question ou opportunité professionnelle.
+</p>
+
+<form id="contact-form" class="contact-form">
+  <div class="form-group">
+    <sl-input name="name" label="Nom et prénom" required></sl-input>
+  </div>
+
+  <div class="form-group">
+    <sl-input name="email" type="email" label="Adresse e-mail" required></sl-input>
+  </div>
+
+  <div class="form-group">
+    <sl-textarea name="message" label="Votre message"></sl-textarea>
+  </div>
+
+  <div class="form-actions">
+    <sl-button type="submit" variant="primary">Envoyer le message</sl-button>
+  </div>
+</form>
+
+<div id="form-response" style="margin-top: 1rem;"></div>
+
+<style>
+  .contact-form {
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-actions {
+    text-align: right;
+  }
+</style>
+
+<script type="module">
+  const form = document.getElementById("contact-form");
+  const responseDiv = document.getElementById("form-response");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    // Проверка валидности формы
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    console.log("Données envoyées:", data);
+
+    // Показываем сообщение об успехе
+    responseDiv.innerHTML = `
+      <sl-alert variant="success" open>
+        <sl-icon slot="icon" name="check-circle"></sl-icon>
+        Votre message a été envoyé avec succès !
+      </sl-alert>
+    `;
+
+    form.reset();
+  });
+</script>
